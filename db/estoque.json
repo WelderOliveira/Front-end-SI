@@ -1,0 +1,11 @@
+{
+  "item": "TESTE",
+  "descricao": "TESTESTESTESTESTES",
+  "quantidadeEstoque": 2,
+  "imagem": "TESTES DA SILVA",
+  "categoria": 1,
+  "username": "teste.teste",
+  "recebe": null,
+  "doa": 1,
+  "quantidadeDoa": 23
+}
