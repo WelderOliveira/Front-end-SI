@@ -25,7 +25,13 @@ const routes = [
         path: '/newsletter',
         name: 'newsletter',
         component: () => import('../views/NewsView.vue')
+    },
+    {
+        path: '/cadastroProduto',
+        name: 'cadastroProduto',
+        component: () => import('../views/cadastroProduto.vue')
     }
+
 ]
 
 const router = createRouter({
