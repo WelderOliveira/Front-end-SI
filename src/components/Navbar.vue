@@ -11,7 +11,7 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="/home">Home</a>
         <a class="nav-item nav-link" href="/newsletter">Login</a>
-        <a class="nav-item nav-link" href="/cadastroProduto">Quem Somos?</a>
+        <a class="nav-item nav-link" href="QuemSomos">Quem Somos?</a>
         <a class="nav-item nav-link disabled" href="#">Disabled</a>
       </div>
     </div>
