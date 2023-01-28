@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column min-vh-100">
+  <div class="flex-column mt-4">
     <footer id="footer" class="mt-auto">
       <p>Sistemas da Informação &copy; 2023</p>
     </footer>

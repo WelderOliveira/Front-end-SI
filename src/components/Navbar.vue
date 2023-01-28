@@ -9,10 +9,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="/home">Home</a>
-        <a class="nav-item nav-link" href="/newsletter">Login</a>
-        <a class="nav-item nav-link" href="QuemSomos">Quem Somos?</a>
-        <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        <router-link to="home" class="nav-item nav-link">Home</router-link>
+        <router-link to="visualizarProdutos" class="nav-item nav-link">Produtos</router-link>
+        <router-link to="newsletter" class="nav-item nav-link">Newsletter</router-link>
+        <router-link to="QuemSomos" class="nav-item nav-link quemsomos">Quem Somos?</router-link>
+
       </div>
     </div>
   </nav>
@@ -23,3 +24,8 @@ export default {
   name: 'NavbarHome',
 }
 </script>
+<style>
+.quemsomos{
+  color: #F9995D;
+}
+</style>

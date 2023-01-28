@@ -42,7 +42,7 @@ template {
 .container-imagem {
   position: relative;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-image: url("@/assets/images/background1.svg");
   background-size: cover;
   background-repeat: no-repeat;
