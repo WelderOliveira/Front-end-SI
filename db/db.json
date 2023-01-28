@@ -1,19 +1,25 @@
 {
-  "username": "caldeiratalles",
-  "senha": "Talles123",
-  "tipoUsuario": 1,
-  "nome": "Talles Marcelo",
-  "cpfCnpj": "099.999.999.99",
-  "sexo": 1,
-  "email": "teste@teste.br",
-  "tipoEmail": 1,
-  "telefone": "(61) 98647-8467",
-  "tipoTelefone": 1,
-  "cep": "70910-900",
-  "numeroEndereco": 2,
-  "complementoEndereco": "Universidade de Brasília",
-  "logradouro": "UNB",
-  "bairro": "Asa norte",
-  "cidade": "Brasília",
-  "estado": "Distrito-Federal"
+  "createUsers": {
+    "username": "caldeiratalles",
+    "senha": "Talles123",
+    "tipoUsuario": 1,
+    "nome": "Talles Marcelo",
+    "cpfCnpj": "099.999.999.99",
+    "sexo": 1,
+    "email": "teste@teste.br",
+    "tipoEmail": 1,
+    "telefone": "(61) 98647-8467",
+    "tipoTelefone": 1,
+    "cep": "70910-900",
+    "numeroEndereco": 2,
+    "complementoEndereco": "Universidade de Brasília",
+    "logradouro": "UNB",
+    "bairro": "Asa norte",
+    "cidade": "Brasília",
+    "estado": "Distrito-Federal"
+  },
+  "users": {
+    "username": "Talles",
+    "senha": "Talles123"
+  }
 }

@@ -1,7 +1,9 @@
 <template>
-  <footer id="footer">
-    <p>Sistemas da Informação &copy; 2023</p>
-  </footer>
+  <div class="d-flex flex-column min-vh-100">
+    <footer id="footer" class="mt-auto">
+      <p>Sistemas da Informação &copy; 2023</p>
+    </footer>
+  </div>
 </template>
 
 <script>
@@ -15,11 +17,10 @@ export default {
    background-color: black;
    color: aqua;
    display: flex;
-   position: absolute;
+   position: relative;
    align-items: center;
    justify-content: center;
    width: 100%;
-   margin-top: 25%;
    height: 150px;
    clear:both;
    padding-top:20px;
