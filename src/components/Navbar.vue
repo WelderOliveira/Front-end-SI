@@ -13,7 +13,7 @@
         <router-link to="visualizarProdutos" class="nav-item">Produtos</router-link>
         <router-link to="newsletter" class="nav-item ">Newsletter</router-link>
         <router-link to="QuemSomos" class="nav-item quemsomos">Quem Somos?</router-link>
-
+        <router-link to="chat" class="nav-item chat">chat</router-link>
       </div>
     </div>
   </nav>
