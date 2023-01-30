@@ -17,7 +17,7 @@ const routes = [
         component: () => import('../views/Authentication/ForgotPassword.vue')
     },
     {
-        path: '/home',
+        path: '/',
         name: 'home',
         component: () => import('../views/HomeView.vue')
     },
@@ -42,7 +42,7 @@ const routes = [
         component: () => import('../views/Itens/ShowAllView.vue')
     },
     {
-        path: '/showProduto',
+        path: '/showProduto/:id',
         name: 'showProduto',
         component: () => import('../views/Itens/ShowView.vue')
     },
@@ -50,6 +50,11 @@ const routes = [
         path:'/chat',
         name:'chat',
         component:()=>import('../views/Itens/chat.vue')
+    },
+    {
+        path:'/indiqueFriend',
+        name:'indique',
+        component:()=>import('../views/Indique.vue')
     },
 
 ]

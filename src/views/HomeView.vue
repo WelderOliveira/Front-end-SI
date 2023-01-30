@@ -14,7 +14,7 @@
     </h3>
 
     <div class="tesrer container">
-      <a href="/cadastroProduto">
+      <a href="/visualizarProdutos">
         <div class="text-center align-items-center align-content-center">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -26,7 +26,7 @@
         <p class="textLink">Produtos que temos em estoque para serem doados</p>
       </a>
 
-      <a href="#">
+      <a href="/chat">
         <div class="text-center align-items-center align-content-center">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -38,7 +38,7 @@
         <p class="textLink">Consertamos computadores/peças para a doação</p>
       </a>
 
-      <a href="#">
+      <a href="/indiqueFriend">
         <div class="text-center align-items-center align-content-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#F9995D" class="bi bi-telephone-outbound"
                viewBox="0 0 16 16">
@@ -47,7 +47,7 @@
           </svg>
           <p class="titleLink">Doação</p>
         </div>
-        <p class="textLink">Selecionamos estudantes para fazer a entrega de peça/computador.</p>
+        <p class="textLink">Você pode indicar um amigo ou conhecido para receber um equipamento.</p>
       </a>
 
     </div>

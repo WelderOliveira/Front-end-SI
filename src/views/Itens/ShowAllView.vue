@@ -13,12 +13,12 @@
         <h5 class="section-title h1">Produtos Disponiveis</h5>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 mb-3" v-for="produto in produtos" :key="produto.id">
+        <div class="col-xs-12 col-sm-6 col-md-4 mb-3 maxCard" v-for="produto in produtos" :key="produto.id">
           <div class="card">
             <div class="card-body text-center">
               <p><img class=" img-fluid" src="../../assets/images/img-not-found.svg" alt="card image"></p>
               <h4 class="card-title">{{ produto.item }}</h4>
-              <p class="card-text">{{ produto.descricao }}</p>
+              <p class="card-text truncate">{{ produto.descricao }}</p>
               <button class="btn btn-primary btn-sm mx-2" @click="viewProduto(produto.id)"><i
                   class="fa fa-plus"></i></button>
             </div>
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     viewProduto(produtoId) {
-      this.$router.push({name: "showProduto", params: {produtoId}});
+      this.$router.push({name: 'showProduto', params: {id: produtoId}});
     },
     cadastrarProduto() {
       this.$router.push({name: "cadastroProduto"})
@@ -73,9 +73,13 @@ export default {
   flex-direction: column;
 }
 
-img-max-tam {
-  width: 20px;
-  height: 20px;
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .empty-data-image {

@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5 d-flex justify-content-center align-content-center align-items-center">
-    <div class="col-sm-5">
-      <div class="col-8">
+    <div class="col d-flex justify-content-center">
+      <div class="col-8 border border-dark rounded p-5">
         <h2 class="text-center mb-5">Cadastrar Produto</h2>
         <form action="">
           <div class="mb-3 form-group">
@@ -27,11 +27,9 @@
           <div class="mb-3 form-group">
             <label for="categoriaDoItem">Categoria do item:</label>
             <div :class="{ error: v$.form.categoriaDoItem.$errors.length }">
-              <select class="form-control" id="categoriaDoItem">
-                <option selected>Categoria</option>
-                <option value=1>One</option>
-                <option value=2>Two</option>
-                <option value=3>Three</option>
+              <select v-model="this.form.categoriaDoItem" class="form-control">
+                <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{ categoria.name }}
+                </option>
               </select>
               <div class="input-errors" v-for="(error, index) of v$.form.categoriaDoItem.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
@@ -69,9 +67,10 @@
 </template>
 
 <script>
-import {required, minLength} from '@vuelidate/validators';
+import {minLength, required} from '@vuelidate/validators';
 import useVuelidate from "@vuelidate/core";
 import ProdutosModel from "@/models/ProdutosModel";
+import CategoriasModel from "@/models/CategoriasModel";
 
 export default {
   setup() {
@@ -86,8 +85,8 @@ export default {
   data() {
     return {
       form: {
-        item: ' ',
-        descricao: ' ',
+        item: '',
+        descricao: '',
         quantidadeEstoque: 0,
         imagem: "TESTES DA SILVA",
         categoriaDoItem: 0,
@@ -95,7 +94,8 @@ export default {
         recebe: 1,
         doa: null,
         quantidadeDoa: null
-      }
+      },
+      categorias: []
     }
   },
   validations: {
@@ -105,17 +105,19 @@ export default {
         minLength: minLength(3)
       },
       descricao: {required, minLength: minLength(3)},
-      categoriaDoItem: {required, minLength: minLength(3)},
+      categoriaDoItem: {required},
       quantidadeEstoque: {required},
     }
+  },
+  async created() {
+    this.categorias = await CategoriasModel.get();
   },
   methods: {
     saveProduto() {
       const produto = new ProdutosModel(this.form);
       produto.save();
       this.ViewProdutos()
-    }
-    ,
+    },
     ViewProdutos() {
       this.$router.push({name: "produtos"})
     }
