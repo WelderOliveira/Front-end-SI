@@ -29,7 +29,7 @@ const routes = [
     {
         path: '/cadastroProduto',
         name: 'cadastroProduto',
-        component: () => import('../views/cadastroProduto.vue')
+        component: () => import('../views/CadastroProduto.vue')
     },
     {
         path: '/quemSomos',

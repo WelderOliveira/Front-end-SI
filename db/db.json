@@ -21,5 +21,67 @@
   "users": {
     "username": "Talles",
     "senha": "Talles123"
-  }
+  },
+  "produtos": [
+    {
+      "item": "Produto teste",
+      "descricao": "Esse é um produto teste",
+      "quantidadeEstoque": 5,
+      "imagem": "TESTES DA SILVA",
+      "categoriaDoItem": 0,
+      "username": "Talles",
+      "recebe": 1,
+      "doa": null,
+      "quantidadeDoa": null,
+      "id": 1
+    },
+    {
+      "item": "Mais um produto",
+      "descricao": "eaieasdasdasd",
+      "quantidadeEstoque": 13,
+      "imagem": "TESTES DA SILVA",
+      "categoriaDoItem": 0,
+      "username": "Talles",
+      "recebe": 1,
+      "doa": null,
+      "quantidadeDoa": null,
+      "id": 2
+    },
+    {
+      "item": "Mais um Produto",
+      "descricao": "PRODUTO TESTES",
+      "quantidadeEstoque": 2,
+      "imagem": "TESTES DA SILVA",
+      "categoriaDoItem": 0,
+      "username": "Talles",
+      "recebe": 1,
+      "doa": null,
+      "quantidadeDoa": null,
+      "id": 3
+    },
+    {
+      "item": "Product",
+      "descricao": "MAIS UM PRODUTO BOLADÃO",
+      "quantidadeEstoque": 3,
+      "imagem": "TESTES DA SILVA",
+      "categoriaDoItem": 0,
+      "username": "Talles",
+      "recebe": 1,
+      "doa": null,
+      "quantidadeDoa": null,
+      "id": 4
+    },
+    {
+      "item": "Mais um",
+      "descricao": "asdkmasldkmaslkdmas",
+      "quantidadeEstoque": 3,
+      "imagem": "TESTES DA SILVA",
+      "categoriaDoItem": 0,
+      "username": "Talles",
+      "recebe": 1,
+      "doa": null,
+      "quantidadeDoa": null,
+      "id": 5
+    }
+  ]
 }

@@ -27,7 +27,7 @@ export default {
 
 <style>
 template {
-  /*background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4));*/
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4));
   margin: 0;
   color: black;
 
@@ -44,9 +44,9 @@ template {
   height: 100vh;
   width: 100%;
   background-image: url("@/assets/images/background1.svg");
+  /*background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4));*/
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   z-index: 0;
 }
 </style>

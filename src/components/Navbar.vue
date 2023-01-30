@@ -8,11 +8,11 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <router-link to="home" class="nav-item nav-link">Home</router-link>
-        <router-link to="visualizarProdutos" class="nav-item nav-link">Produtos</router-link>
-        <router-link to="newsletter" class="nav-item nav-link">Newsletter</router-link>
-        <router-link to="QuemSomos" class="nav-item nav-link quemsomos">Quem Somos?</router-link>
+      <div class="navbar-nav align-content-end align-items-end">
+        <router-link to="home" class="nav-item">Home</router-link>
+        <router-link to="visualizarProdutos" class="nav-item">Produtos</router-link>
+        <router-link to="newsletter" class="nav-item ">Newsletter</router-link>
+        <router-link to="QuemSomos" class="nav-item quemsomos">Quem Somos?</router-link>
 
       </div>
     </div>
@@ -25,6 +25,13 @@ export default {
 }
 </script>
 <style>
+.nav-item{
+  text-decoration: none;
+  padding: 0.5rem;
+  color: black;
+  display: block;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
 .quemsomos{
   color: #F9995D;
 }
