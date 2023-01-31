@@ -42,7 +42,8 @@
     </div>
   </div>
 
-
+ <p></p>
+ <button type="button" class="btn btn-primary btn-lg btn-block" @click="clicar">gráficos</button>
   
 </div>
 </template>
@@ -51,4 +52,26 @@
   .prip{
     background-color: black;
   }
+  .button{
+    width: 300px;
+    
+  }
 </style>
+
+<script>
+  export default {
+  
+ 
+
+  methods: {
+     clicar() {
+      this.$router.push({name: "graficoPronto"});
+      return;
+      
+      }
+    },
+  }
+
+     
+
+</script>

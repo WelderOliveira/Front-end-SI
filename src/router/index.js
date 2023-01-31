@@ -37,6 +37,11 @@ const routes = [
         component: () => import('../views/QuemSomosView.vue')
     },
     {
+        path: '/graficoPronto',
+        name: 'graficoPronto',
+        component: () => import('../views/Itens/grafico.vue')
+    },
+    {
         path: '/visualizarProdutos',
         name: 'produtos',
         component: () => import('../views/Itens/ShowAllView.vue')
