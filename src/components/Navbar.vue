@@ -15,6 +15,10 @@
         <router-link to="/newsletter" class="nav-item ">Newsletter</router-link>
         <router-link to="/QuemSomos" class="nav-item quemsomos">Quem Somos?</router-link>
         <!--        <router-link to="/chat" class="nav-item chat">chat</router-link>-->
+        <button class="btn nav-item" type="button" id="signOut" title="Sair"
+                aria-haspopup="true" aria-expanded="false" @click="logout">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
       </div>
     </div>
   </nav>
@@ -23,6 +27,12 @@
 <script>
 export default {
   name: 'NavbarHome',
+  methods: {
+    logout() {
+      localStorage.removeItem('authUser');
+      this.$router.push({name: "login"})
+    }
+  }
 }
 </script>
 <style>
