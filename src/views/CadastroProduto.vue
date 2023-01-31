@@ -71,10 +71,13 @@ import {minLength, required} from '@vuelidate/validators';
 import useVuelidate from "@vuelidate/core";
 import ProdutosModel from "@/models/ProdutosModel";
 import CategoriasModel from "@/models/CategoriasModel";
+import {useToast} from "vue-toastification";
 
 export default {
   setup() {
-    return {v$: useVuelidate()}
+    const toast = useToast();
+
+    return {toast, v$: useVuelidate()}
   },
 
   props: {
@@ -90,7 +93,7 @@ export default {
         quantidadeEstoque: 0,
         imagem: "TESTES DA SILVA",
         categoriaDoItem: 0,
-        username: "Talles",
+        username: JSON.parse(localStorage.getItem('authUser')).username,
         recebe: 1,
         doa: null,
         quantidadeDoa: null
@@ -116,6 +119,9 @@ export default {
     saveProduto() {
       const produto = new ProdutosModel(this.form);
       produto.save();
+
+      this.toast.success("Produto cadastrado com Sucesso!");
+
       this.ViewProdutos()
     },
     ViewProdutos() {

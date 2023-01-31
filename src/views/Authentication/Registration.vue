@@ -10,9 +10,11 @@
         <h2 class="text-center mb-5 title-login">Registre-se</h2>
         <form action="">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" id="nome" placeholder="Nome" aria-label="Nome">
+            <input type="text" class="form-control" id="nome" placeholder="Nome" aria-label="Nome"
+                   v-model.trim="v$.form.nome.$model">
             <span class="input-group-text">@</span>
-            <input type="text" class="form-control" id="username" placeholder="Usuário" aria-label="Usuário">
+            <input type="text" class="form-control" id="username" placeholder="Usuário" aria-label="Usuário"
+                   v-model.trim="v$.form.username.$model">
           </div>
           <div class="mb-3 form-group">
             <div :class="{ error: v$.form.cpfCnpj.$errors.length }">
@@ -43,8 +45,8 @@
           </div>
           <div class="mb-3 form-group">
             <div :class="{ error: v$.form.cep.$errors.length }">
-              <input type="number" class="form-control" id="cep" placeholder="CEP" autocomplete="off"
-                     v-model.trim="v$.form.cep.$model">
+              <input type="text" class="form-control" id="cep" placeholder="CEP" autocomplete="off"
+                     v-model.trim="v$.form.cep.$model" @keyup="searchCep">
               <div class="input-errors" v-for="(error, index) of v$.form.cep.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
               </div>
@@ -52,19 +54,22 @@
           </div>
           <div class="input-group mb-3">
             <input type="text" class="form-control" id="complementoEndereco" placeholder="Complemento"
-                   aria-label="Complemento">
-            <input type="text" class="form-control" id="logradouro" placeholder="Logradouro" aria-label="Logradouro">
+                   aria-label="Complemento" v-model.trim="v$.form.complementoEndereco.$model">
+            <input type="text" class="form-control" id="logradouro" placeholder="Logradouro" aria-label="Logradouro"
+                   v-model.trim="v$.form.logradouro.$model">
           </div>
           <div class="input-group mb-3">
             <input type="text" class="form-control" id="bairro" placeholder="Bairro"
-                   aria-label="Bairro">
-            <input type="text" class="form-control" id="cidade" placeholder="Cidade" aria-label="Cidade">
+                   aria-label="Bairro" v-model.trim="v$.form.bairro.$model">
+            <input type="text" class="form-control" id="cidade" placeholder="Cidade" aria-label="Cidade"
+                   v-model.trim="v$.form.cidade.$model">
           </div>
           <div class="input-group mb-3">
-            <input type="number" class="form-control" id="numeroEndereco" placeholder="Número" autocomplete="off">
+            <input type="number" class="form-control" id="numeroEndereco" placeholder="Número" autocomplete="off"
+                   v-model.trim="v$.form.numeroEndereco.$model">
 
             <input type="text" class="form-control" id="estado" placeholder="Estado"
-                   aria-label="Estado">
+                   aria-label="Estado" v-model.trim="v$.form.estado.$model">
           </div>
           <div class="row mb-3">
             <div class="col-sm-6">
@@ -78,7 +83,7 @@
             </div>
             <div class="col-sm-6">
               <div :class="{ error: v$.form.confirmSenha.$errors.length }">
-                <input @input="checkPassword()" type="password" class="form-control" id="confirmSenha"
+                <input type="password" class="form-control" id="confirmSenha"
                        placeholder="Confirme sua senha"
                        v-model.trim="v$.form.confirmSenha.$model">
                 <div class="input-errors" v-for="(error, index) of v$.form.confirmSenha.$errors" :key="index">
@@ -89,7 +94,7 @@
           </div>
 
           <div class="d-grid gap-2">
-            <button type="button" class="btn btn-primary" :disabled="v$.form.$invalid"><i
+            <button type="button" class="btn btn-primary" :disabled="v$.form.$invalid" @click="register"><i
                 class="fas fa-sign-in-alt"></i> Cadastrar
             </button>
             <button type="button" class="btn btn-outline-secondary" @click="goToLogin"><i class="fas fa-arrow-left"></i>
@@ -127,13 +132,20 @@
 }
 </style>
 <script>
-import {required, minLength, email, sameAs} from '@vuelidate/validators';
+import {email, minLength, required} from '@vuelidate/validators';
 import useVuelidate from "@vuelidate/core";
+import UsersModel from "@/models/UsersModel";
+import {useToast} from "vue-toastification";
+import CategoriasModel from "@/models/CategoriasModel";
+import axios from "axios";
 
 export default {
 
   setup() {
-    return {v$: useVuelidate()}
+    // Get toast interface
+    const toast = useToast();
+
+    return {toast, v$: useVuelidate()}
   },
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Registration',
@@ -167,16 +179,60 @@ export default {
         email
       },
       senha: {required, minLength: minLength(3)},
-      confirmSenha: {required, sameAsPassword: sameAs('senha')},
+      confirmSenha: {required},
       cpfCnpj: {required, minLength: minLength(11)},
       telefone: {required, minLength: minLength(8)},
-      cep: {required, minLength: minLength(8)}
+      cep: {required, minLength: minLength(8)},
+      username: {required},
+      tipoUsuario: {required},
+      nome: {required},
+      sexo: {required},
+      tipoEmail: {required},
+      numeroEndereco: {required},
+      complementoEndereco: {required},
+      logradouro: {required},
+      bairro: {required},
+      cidade: {required},
+      estado: {required}
     }
   },
-
+  async created() {
+    this.categorias = await CategoriasModel.get();
+  },
   methods: {
+    register() {
+      this.v$.$touch();
+      if (this.v$.$error) return;
+
+      const user = new UsersModel(this.form);
+      user.save();
+
+      this.toast.success("Usuário criado com sucesso");
+
+      this.goToLogin();
+    },
     goToLogin() {
       this.$router.push({name: 'login'});
+    },
+    searchCep() {
+      // console.log(this.form.cep.length)
+      if (this.form.cep.length === 8) {
+        axios.get(`https://viacep.com.br/ws/${this.form.cep}/json/`).then(resp => {
+          const data = resp.data
+          if (!data.erro) {
+            this.response = data
+            this.form.bairro = data.bairro
+            this.form.cidade = data.localidade
+            this.form.logradouro = data.logradouro
+            this.form.estado = data.uf
+            this.form.complementoEndereco = data.complemento
+          } else {
+            alert('Cep não encontrado')
+          }
+        }).catch(error => {
+          console.error(error)
+        })
+      }
     }
   }
 }
