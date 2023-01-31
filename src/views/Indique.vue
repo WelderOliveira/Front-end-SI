@@ -68,8 +68,16 @@
 <script>
 import {required, minLength, email} from '@vuelidate/validators';
 import useVuelidate from "@vuelidate/core";
+import {useToast} from "vue-toastification";
+
 export default {
   setup() {
+    const toast = useToast();
+
+    toast.info("Aqui você pode indicar um amigo ou conhecido que esteja necessitando de algum equipamento, " +
+        "nossa equipe entrará em contato para auxilia-lo da melhor forma.", {
+      timeout: 5000
+    });
     return {v$: useVuelidate()}
   },
 

@@ -1,7 +1,39 @@
 {
   "users": [
+    {
+      "username": "welder.c",
+      "senha": "12345",
+      "confirmSenha": "12345",
+      "tipoUsuario": 1,
+      "nome": "Welder",
+      "cpfCnpj": "99999999999",
+      "sexo": 1,
+      "email": "welder@teste.com",
+      "tipoEmail": 1,
+      "telefone": 61999999999,
+      "cep": "73401421",
+      "numeroEndereco": 23,
+      "complementoEndereco": "24",
+      "logradouro": "Quadra 13 Módulo 8",
+      "bairro": "Setor Habitacional Mestre D'Armas (Planaltina)",
+      "cidade": "Brasília",
+      "estado": "DF",
+      "id": 1
+    }
   ],
   "produtos": [
+    {
+      "item": "What is Lorem Ipsum?",
+      "descricao": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "quantidadeEstoque": 3,
+      "imagem": "TESTES DA SILVA",
+      "categoriaDoItem": 2,
+      "username": "welder.c",
+      "recebe": 1,
+      "doa": null,
+      "quantidadeDoa": null,
+      "id": 1
+    }
   ],
   "indica": [
     {

@@ -10,7 +10,9 @@ Model.$http = axios;
 
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import {VueMaskFilter} from "v-mask";
 
+createApp(App).use(VueMaskFilter);
 createApp(App).use(Toast);
 createApp(App).use(bootstrap);
 createApp(App).use(icons);

@@ -32,6 +32,8 @@
 
 <script>
 import ProdutosModel from "@/models/ProdutosModel";
+import {useToast} from "vue-toastification";
+// import toast from "bootstrap/js/src/toast";
 
 // import axios from "axios";
 
@@ -46,8 +48,11 @@ export default {
     ViewProdutos() {
       this.$router.push({name: "produtos"})
     },
-    solicitarProduto(){
-
+    solicitarProduto() {
+      useToast().success("Seu item foi solicitado com sucesso, favor aguardar retorno da equipe de organização!", {
+        timeout: 5000
+      })
+      this.$router.push({name: "chat"})
     }
   },
   async created() {
