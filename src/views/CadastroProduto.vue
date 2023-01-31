@@ -4,46 +4,62 @@
       <div class="col-8 border border-dark rounded p-5">
         <h2 class="text-center mb-5">Cadastrar Produto</h2>
         <form action="">
-          <div class="mb-3 form-group">
-            <label for="item">Modelo/Nome do Produto</label>
-            <div :class="{ error: v$.form.item.$errors.length }">
-              <input type="text" class="form-control" id="item" placeholder="Modelo/Nome do Produto" autocomplete="off"
-                     v-model.trim="v$.form.item.$model">
-              <div class="input-errors" v-for="(error, index) of v$.form.item.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
+          <div class="row">
+            <div class="col-8">
+              <div class="mb-3 form-group">
+                <label for="item">Modelo/Nome do Produto</label>
+                <div :class="{ error: v$.form.item.$errors.length }">
+                  <input type="text" class="form-control" id="item" placeholder="Modelo/Nome do Produto"
+                         autocomplete="off"
+                         v-model.trim="v$.form.item.$model">
+                  <div class="input-errors" v-for="(error, index) of v$.form.item.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 form-group">
+                <label for="descricao">Descrição do item:</label>
+                <div :class="{ error: v$.form.descricao.$errors.length }">
+                  <input type="text" class="form-control" id="descricao" placeholder="Descrição do item"
+                         autocomplete="off"
+                         v-model.trim="v$.form.descricao.$model">
+                  <div class="input-errors" v-for="(error, index) of v$.form.descricao.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 form-group">
+                <label for="categoriaDoItem">Categoria do item:</label>
+                <div :class="{ error: v$.form.categoriaDoItem.$errors.length }">
+                  <select v-model="this.form.categoriaDoItem" class="form-control">
+                    <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{
+                        categoria.name
+                      }}
+                    </option>
+                  </select>
+                  <div class="input-errors" v-for="(error, index) of v$.form.categoriaDoItem.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 form-group">
+                <label for="quantidadeEstoque">Quantidade de itens:</label>
+                <div :class="{ error: v$.form.quantidadeEstoque.$errors.length }">
+                  <input type="number" class="form-control" id="quantidadeEstoque" placeholder="Quantidade"
+                         autocomplete="off"
+                         v-model.trim="v$.form.quantidadeEstoque.$model">
+                  <div class="input-errors" v-for="(error, index) of v$.form.quantidadeEstoque.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="mb-3 form-group">
-            <label for="descricao">Descrição do item:</label>
-            <div :class="{ error: v$.form.descricao.$errors.length }">
-              <input type="text" class="form-control" id="descricao" placeholder="Descrição do item" autocomplete="off"
-                     v-model.trim="v$.form.descricao.$model">
-              <div class="input-errors" v-for="(error, index) of v$.form.descricao.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-              </div>
-            </div>
-          </div>
-          <div class="mb-3 form-group">
-            <label for="categoriaDoItem">Categoria do item:</label>
-            <div :class="{ error: v$.form.categoriaDoItem.$errors.length }">
-              <select v-model="this.form.categoriaDoItem" class="form-control">
-                <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{ categoria.name }}
-                </option>
-              </select>
-              <div class="input-errors" v-for="(error, index) of v$.form.categoriaDoItem.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-              </div>
-            </div>
-          </div>
-          <div class="mb-3 form-group">
-            <label for="quantidadeEstoque">Quantidade de itens:</label>
-            <div :class="{ error: v$.form.quantidadeEstoque.$errors.length }">
-              <input type="number" class="form-control" id="quantidadeEstoque" placeholder="Quantidade"
-                     autocomplete="off"
-                     v-model.trim="v$.form.quantidadeEstoque.$model">
-              <div class="input-errors" v-for="(error, index) of v$.form.quantidadeEstoque.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
+            <div class="col-4">
+              <div class="upload-img">
+                <div class="card bg-white" style="min-height: 20rem; max-height: 21rem;">
+                  <img v-bind:src="form.imagem" style="max-height: 17rem;"/>
+                  <input type="file" @change="handleImage" class="custom-input" accept="image/*">
+                </div>
               </div>
             </div>
           </div>
@@ -91,7 +107,7 @@ export default {
         item: '',
         descricao: '',
         quantidadeEstoque: 0,
-        imagem: "TESTES DA SILVA",
+        imagem: '',
         categoriaDoItem: 0,
         username: JSON.parse(localStorage.getItem('authUser')).username,
         recebe: 1,
@@ -126,8 +142,22 @@ export default {
     },
     ViewProdutos() {
       this.$router.push({name: "produtos"})
-    }
-  }
+    },
+    handleImage() {
+      const file = document.querySelector('input[type=file]').files[0];
+
+      const reader = new FileReader()
+
+      reader.onloadend = () => {
+        reader.result;
+        this.form.imagem = reader.result;
+      }
+      reader.onerror = function (error) {
+        alert(error);
+      };
+      reader.readAsDataURL(file);
+    },
+  },
 }
 ;
 </script>

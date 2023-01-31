@@ -2,13 +2,18 @@
   <div class="container d-flex justify-content-center mt-5">
     <div class="row ">
       <div class="col-4 empty-data">
-        <img src="../../assets/images/empty.svg" class="empty-data-image" alt="Empty">
+        <div v-if="response.imagem.length < 5">
+          <img class=" img-fluid" src="../../assets/images/empty.svg"
+               alt="card image">
+        </div>
+        <div v-else>
+          <img class="img-fluid" v-bind:src="response.imagem" />
+        </div>
       </div>
       <div class="col-8">
         <div class="card border-light mb-3">
           <div class="card-header">{{ response.item }}</div>
           <div class="card-body">
-            <h5 class="card-title">Light card title</h5>
             <p class="card-text">{{ response.descricao }}</p>
           </div>
         </div>

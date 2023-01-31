@@ -16,7 +16,13 @@
         <div class="col-xs-12 col-sm-6 col-md-4 mb-3 maxCard" v-for="produto in produtos" :key="produto.id">
           <div class="card">
             <div class="card-body text-center">
-              <p><img class=" img-fluid" src="../../assets/images/img-not-found.svg" alt="card image"></p>
+              <div v-if="produto.imagem.length < 5">
+                <img class=" img-fluid" src="../../assets/images/img-not-found.svg"
+                     alt="card image">
+              </div>
+              <div v-else>
+                <img class="img-fluid" v-bind:src="produto.imagem" style="max-height: 17rem;"/>
+              </div>
               <h4 class="card-title">{{ produto.item }}</h4>
               <p class="card-text truncate">{{ produto.descricao }}</p>
               <button class="btn btn-primary btn-sm mx-2" @click="viewProduto(produto.id)"><i
