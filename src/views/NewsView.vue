@@ -1,77 +1,71 @@
-<template class ='prip'>
-  <center><h1>Notícias</h1>
-  <h4>computadores entregues e peças aos estudantes</h4>
-  </center>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <img src="../assets/images/teclado.png" class="img-fluid" alt="Imagem responsiva">
+<template class='prip'>
+  <div class="container text-center">
+    <div class="mx-3 pt-4">
+      <h5 class="section-title h1">Notícias da HelpDelivery</h5>
     </div>
-    <div class="col">
-      <img src="../assets/images/mouse.png" class="img-fluid" alt="Imagem responsiva">
-    </div>
-    <div class="col">
-      <img src="../assets/images/teclado.png" class="img-fluid" alt="Imagem responsiva">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 mb-3 maxCard">
+        <div class="card">
+          <div class="card-body text-center">
+            <img class=" img-fluid" src="../assets/images/dashBoard.svg"
+                 alt="card image">
+            <h4 class="card-title">Relatório semestral</h4>
+            <p class="card-text truncate"></p>
+            <button class="btn btn-primary btn-sm mx-2" @click="clicar"><i
+                class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 mb-3 maxCard">
+        <div class="card">
+          <div class="card-body text-center">
+            <img class=" img-fluid" src="../assets/images/mouse.png"
+                 alt="card image">
+            <h4 class="card-title">Mouse</h4>
+            <p class="card-text truncate">Mouse entregue a Anna, em 23 de julho de 2022</p>
+            <button class="btn btn-primary btn-sm mx-2" disabled><i
+                class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 mb-3 maxCard">
+        <div class="card">
+          <div class="card-body text-center">
+            <img class=" img-fluid" src="../assets/images/teclado.png"
+                 alt="card image">
+            <h4 class="card-title">Teclado</h4>
+            <p class="card-text truncate">Teclado entregue a Joana, no dia 15 de janeiro de 2023</p>
+            <button class="btn btn-primary btn-sm mx-2 disabled"><i
+                class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-  
-  <div class="row">
-    <div class="col">
-      <p class="text-break">Teclado</p>
-    </div>
-    <div class="col">
-      <p class="text-break">Mouse</p>
-    </div>
-    <div class="col">
-      <p class="text-break">Teclado</p>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col">
-      <p class="text-break">Teclado entregue a Joana, no dia 15 de janeiro de 202
-      </p>
-    </div>
-    <div class="col">
-      <p class="text-break">mouse entregue a Anna, em 23 de julho de 2022</p>
-    </div>
-    <div class="col">
-      <p class="text-break">Teclado entregue a Maria, no dia 18 de janeiro de 2023</p>
-    </div>
-  </div>
-
- <p></p>
- <button type="button" class="btn btn-primary btn-lg btn-block" @click="clicar">gráficos</button>
-  
-</div>
 </template>
 
 <style>
-  .prip{
-    background-color: black;
-  }
-  .button{
-    width: 300px;
-    
-  }
+.img-fluid {
+  max-height: 10rem;
+}
+
+.card {
+  max-height: 20rem;
+  min-height: 20rem;
+}
 </style>
 
 <script>
-  export default {
-  
- 
+export default {
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: 'newsletter',
 
   methods: {
-     clicar() {
-      this.$router.push({name: "graficoPronto"});
-      return;
-      
-      }
-    },
-  }
+    clicar() {
+      this.$router.push({name: "relatorio"});
+    }
+  },
+}
 
-     
 
 </script>

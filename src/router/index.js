@@ -37,8 +37,8 @@ const routes = [
         component: () => import('../views/QuemSomosView.vue')
     },
     {
-        path: '/graficoPronto',
-        name: 'graficoPronto',
+        path: '/relatorio',
+        name: 'relatorio',
         component: () => import('../views/Itens/grafico.vue')
     },
     {
