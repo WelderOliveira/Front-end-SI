@@ -16,14 +16,14 @@
         <div class="col-xs-12 col-sm-6 col-md-4 mb-3 maxCard" v-for="produto in produtos" :key="produto.id">
           <div class="card">
             <div class="card-body text-center">
-              <div v-if="produto.imagem.length < 5">
+              <div v-if="produto.imagem.length < 5" style="height: 16.5rem;">
                 <img class=" img-fluid" src="../../assets/images/img-not-found.svg"
                      alt="card image">
               </div>
-              <div v-else>
-                <img class="img-fluid" v-bind:src="produto.imagem" style="max-height: 17rem;"/>
+              <div v-else style="height: 16.5rem;">
+                <img class="img-fluid" v-bind:src="produto.imagem" style="height: 100%"/>
               </div>
-              <h4 class="card-title">{{ produto.item }}</h4>
+              <h4 class="card-title truncate">{{ produto.item }}</h4>
               <p class="card-text truncate">{{ produto.descricao }}</p>
               <button class="btn btn-primary btn-sm mx-2" @click="viewProduto(produto.id)"><i
                   class="fa fa-plus"></i></button>
