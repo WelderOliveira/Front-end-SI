@@ -189,7 +189,7 @@ export default {
       sexo: {required},
       tipoEmail: {required},
       numeroEndereco: {required},
-      complementoEndereco: {required},
+      complementoEndereco: {},
       logradouro: {required},
       bairro: {required},
       cidade: {required},

@@ -11,12 +11,12 @@ export default {
   name: 'BarChart',
   mounted() {
     const ctx = document.getElementById('myChart');
-    const labels = ["Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho"];
+    const labels = ["01/2020", "02/2020", "01/2021", "02/2021", "01/2022", "02/2022"];
     const data = {
       labels: labels,
       datasets: [{
-        label: 'Registro de chamados HelpDelivery',
-        data: [65, 59, 80, 81, 56, 55, 40],
+        label: 'Doações 2020 - 2023',
+        data: [10, 70, 5, 0, 0, 3],
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1
