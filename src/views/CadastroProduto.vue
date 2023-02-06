@@ -32,8 +32,9 @@
                 <label for="categoriaDoItem">Categoria do item:</label>
                 <div :class="{ error: v$.form.categoriaDoItem.$errors.length }">
                   <select v-model="this.form.categoriaDoItem" class="form-control">
-                    <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{
-                        categoria.name
+                    <option v-for="categoria in categorias" :key="categoria.id_categoria"
+                            :value="categoria.id_categoria">{{
+                        categoria.categoria
                       }}
                     </option>
                   </select>
@@ -85,9 +86,9 @@
 <script>
 import {minLength, required} from '@vuelidate/validators';
 import useVuelidate from "@vuelidate/core";
-import ProdutosModel from "@/models/ProdutosModel";
 import CategoriasModel from "@/models/CategoriasModel";
 import {useToast} from "vue-toastification";
+import CreateProdutosModel from "@/models/CreateProdutosModel";
 
 export default {
   setup() {
@@ -109,12 +110,12 @@ export default {
         quantidadeEstoque: 0,
         imagem: '',
         categoriaDoItem: 0,
-        username: JSON.parse(localStorage.getItem('authUser')).username,
+        username: JSON.parse(localStorage.getItem('authUser')),
         recebe: 1,
         doa: null,
         quantidadeDoa: null
       },
-      categorias: []
+      categorias: null
     }
   },
   validations: {
@@ -129,11 +130,15 @@ export default {
     }
   },
   async created() {
-    this.categorias = await CategoriasModel.get();
+    try {
+      this.categorias = await CategoriasModel.$get();
+    } catch (ex) {
+      console.log("error.status:", ex);
+    }
   },
   methods: {
     saveProduto() {
-      const produto = new ProdutosModel(this.form);
+      const produto = new CreateProdutosModel(this.form);
       produto.save();
 
       this.toast.success("Produto cadastrado com Sucesso!");

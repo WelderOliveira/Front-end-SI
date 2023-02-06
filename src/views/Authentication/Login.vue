@@ -5,11 +5,11 @@
         <h2 class="text-center mb-5 title-login">Faça o Login</h2>
         <form action="">
           <div class="mb-3 form-group">
-            <div :class="{ error: v$.form.email.$errors.length }">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="name@example.com" autocomplete="off"
-                     v-model.trim="v$.form.email.$model">
-              <div class="input-errors" v-for="(error, index) of v$.form.email.$errors" :key="index">
+            <div :class="{ error: v$.form.username.$errors.length }">
+              <label for="username" class="form-label">Usuário</label>
+              <input type="text" class="form-control" id="username" autocomplete="off"
+                     v-model.trim="v$.form.username.$model">
+              <div class="input-errors" v-for="(error, index) of v$.form.username.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
               </div>
             </div>
@@ -72,10 +72,10 @@
 }
 </style>
 <script>
-import {required, minLength, email} from '@vuelidate/validators';
+import {required, minLength} from '@vuelidate/validators';
 import useVuelidate from "@vuelidate/core";
-import UsersModel from "@/models/UsersModel";
 import {useToast} from "vue-toastification";
+import axios from "axios";
 
 export default {
   setup() {
@@ -88,16 +88,15 @@ export default {
   data() {
     return {
       form: {
-        email: '',
+        username: '',
         senha: ''
       }
     }
   },
   validations: {
     form: {
-      email: {
-        required,
-        email
+      username: {
+        required
       },
       senha: {
         required,
@@ -110,28 +109,37 @@ export default {
     async login() {
       this.v$.$touch();
       if (this.v$.$error) return;
+      const senha = this.form.senha;
+      const toast = useToast();
 
-      let user = await UsersModel.params({email: this.form.email}).get();
 
-      if (!user || !user[0] || !user[0].email) {
-        this.toast.error("Usuário e/ou senha incorretos");
-        this.clearForm();
-        return;
-      }
+      axios.post('https://helpdilvery-production.up.railway.app/userStock/login', {
+            'username': this.form.username,
+            'senha': senha
+          }, {headers: {'Content-Type': 'application/json'}}
+      ).then(function (response) {
+        if (!response.data.username || !response.data) {
+          console.log('ENTREI1')
+          toast.error("Usuário e/ou senha incorretos");
+          this.clearForm();
+          return;
+        }
 
-      user = user[0];
-      if (user.senha !== this.form.senha) {
-        this.toast.error("Usuário e/ou senha incorretos");
-        this.clearForm();
-        return;
-      }
+        let user = response.data.username;
+        if (response.data.senha !== senha) {
+          console.log('ENTREI12')
+          toast.error("Usuário e/ou senha incorretos");
+          this.clearForm();
+          return;
+        }
 
-      localStorage.setItem('authUser', JSON.stringify(user));
+        localStorage.setItem('authUser', JSON.stringify(user));
+      })
       this.$router.push({name: "home"});
     },
     clearForm() {
       this.form = {
-        email: "",
+        username: "",
         senha: ""
       }
     },

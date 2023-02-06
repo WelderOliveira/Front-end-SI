@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import ProdutosModel from "@/models/ProdutosModel";
+import ShowProdutosModel from "@/models/ShowProdutosModel";
 import {useToast} from "vue-toastification";
 // import toast from "bootstrap/js/src/toast";
 
@@ -61,7 +61,7 @@ export default {
     }
   },
   async created() {
-    const response = await ProdutosModel.find(this.$route.params.id)
+    const response = await ShowProdutosModel.find(this.$route.params.id)
     return this.response = response
     // this.produtos = this.$route;
   },

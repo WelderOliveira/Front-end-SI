@@ -36,7 +36,7 @@
           </div>
           <div class="mb-3 form-group">
             <div :class="{ error: v$.form.telefone.$errors.length }">
-              <input type="number" class="form-control" id="telefone" placeholder="Telefone" autocomplete="off"
+              <input type="text" class="form-control" id="telefone" placeholder="Telefone" autocomplete="off"
                      v-model.trim="v$.form.telefone.$model">
               <div class="input-errors" v-for="(error, index) of v$.form.telefone.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
@@ -65,7 +65,7 @@
                    v-model.trim="v$.form.cidade.$model">
           </div>
           <div class="input-group mb-3">
-            <input type="number" class="form-control" id="numeroEndereco" placeholder="Número" autocomplete="off"
+            <input type="text" class="form-control" id="numeroEndereco" placeholder="Número" autocomplete="off"
                    v-model.trim="v$.form.numeroEndereco.$model">
 
             <input type="text" class="form-control" id="estado" placeholder="Estado"
@@ -134,10 +134,11 @@
 <script>
 import {email, minLength, required} from '@vuelidate/validators';
 import useVuelidate from "@vuelidate/core";
-import UsersModel from "@/models/UsersModel";
+import CreateUsersModel from "@/models/CreateUsersModel";
 import {useToast} from "vue-toastification";
-import CategoriasModel from "@/models/CategoriasModel";
+// import CategoriasModel from "@/models/CategoriasModel";
 import axios from "axios";
+// import CreateUsers from "@/models/CreateUsersModel";
 
 export default {
 
@@ -162,6 +163,7 @@ export default {
         email: '',
         tipoEmail: 1,
         telefone: '',
+        tipoTelefone: 1,
         cep: '',
         numeroEndereco: '',
         complementoEndereco: '',
@@ -188,6 +190,7 @@ export default {
       nome: {required},
       sexo: {required},
       tipoEmail: {required},
+      tipoTelefone: {required},
       numeroEndereco: {required},
       complementoEndereco: {},
       logradouro: {required},
@@ -196,15 +199,12 @@ export default {
       estado: {required}
     }
   },
-  async created() {
-    this.categorias = await CategoriasModel.get();
-  },
   methods: {
     register() {
       this.v$.$touch();
       if (this.v$.$error) return;
 
-      const user = new UsersModel(this.form);
+      const user = new CreateUsersModel(this.form);
       user.save();
 
       this.toast.success("Usuário criado com sucesso");

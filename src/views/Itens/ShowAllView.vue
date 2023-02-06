@@ -21,8 +21,8 @@
         <div class="col-4">
           <small class="text-muted">Filtre pela categoria do item:</small>
           <select name="categoria" id="categoria" v-model="filter.categoriaDoItem" class="form-control">
-            <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{
-                categoria.name
+            <option v-for="categoria in categorias" :key="categoria.id_categoria" :value="categoria.id">{{
+                categoria.categoria
               }}
             </option>
           </select>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 mb-3 maxCard" v-for="produto in produtos" :key="produto.id">
+        <div class="col-xs-12 col-sm-6 col-md-4 mb-3 maxCard" v-for="produto in produtos" :key="produto.id_item">
           <div class="card">
             <div class="card-body text-center">
               <div v-if="produto.imagem.length < 5" style="height: 16.5rem;">
@@ -45,7 +45,7 @@
               </div>
               <h4 class="card-title truncate">{{ produto.item }}</h4>
               <p class="card-text truncate">{{ produto.descricao }}</p>
-              <button class="btn btn-primary btn-sm mx-2" @click="viewProduto(produto.id)"><i
+              <button class="btn btn-primary btn-sm mx-2" @click="viewProduto(produto.id_item)"><i
                   class="fa fa-plus"></i></button>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       produtos: [],
-      categorias: [],
+      categorias: null,
       filter: {
         item: null,
         categoriaDoItem: null
@@ -73,7 +73,7 @@ export default {
   },
   async created() {
     this.produtos = await ProdutosModel.get();
-    this.categorias = await CategoriasModel.get();
+    this.categorias = await CategoriasModel.$get();
   },
   methods: {
     viewProduto(produtoId) {
